@@ -50,6 +50,7 @@ const messages = [
 app.get(
 	'/',
 	asyncHandler((req, res) => {
+		console.log('hello');
 		// Render the index page
 		res.render('index', { messages });
 	})

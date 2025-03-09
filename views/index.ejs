@@ -2,6 +2,7 @@
 <html lang="en">
 <%- include('partials/head') %>
 <body>
+    <%- include('partials/nav') %>
     <% messages.forEach(message => { %>
         <div class="message">
             <div class="user"><%= message.user %></div>

@@ -55,6 +55,15 @@ app.get(
 	})
 );
 
+// View message details
+app.get(
+	'/:id',
+	asyncHandler((req, res) => {
+		const message = messages.find((element) => element.id === Number(req.params.id));
+		res.render('message', { message });
+	})
+);
+
 // Render Form
 newRouter.get(
 	'/',

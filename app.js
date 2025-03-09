@@ -33,3 +33,17 @@ const messages = [
 		added: new Date(),
 	},
 ];
+
+// Render the messages to the user at '/'
+app.get(
+	'/',
+	asyncHandler((req, res) => {
+		// Render the index page
+		res.render('index', { messages });
+	})
+);
+
+// Error handler
+app.use((err, req, res, next) => {
+	res.status(404).send(err.message);
+});

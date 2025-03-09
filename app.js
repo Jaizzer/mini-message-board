@@ -4,6 +4,7 @@ const path = require('node:path');
 
 // Setup async handler for handling errors
 const asyncHandler = require('express-async-handler');
+const newRouter = require('./routes/newRouter');
 
 // Setup the server
 const app = express();
@@ -42,6 +43,9 @@ app.get(
 		res.render('index', { messages });
 	})
 );
+
+// Setup 'new' router
+app.use('/new', newRouter);
 
 // Error handler
 app.use((err, req, res, next) => {

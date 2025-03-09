@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config();
+const path = require('node:path');
 
 // Setup async handler for handling errors
 const asyncHandler = require('express-async-handler');
@@ -14,6 +15,10 @@ app.listen(process.env.PORT, (error) => {
 		console.error(error);
 	}
 });
+
+// Setup ejs engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // Message data
 const messages = [

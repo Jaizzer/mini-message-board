@@ -17,6 +17,9 @@ app.listen(process.env.PORT, (error) => {
 	}
 });
 
+// Setup the middle ware to parse data from req.body
+app.use(express.urlencoded({ extended: true }));
+
 // Setup ejs engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -55,6 +58,15 @@ newRouter.get(
 	'/',
 	asyncHandler((req, res) => {
 		res.render('form');
+	})
+);
+
+// Submit Form
+newRouter.post(
+	'/',
+	asyncHandler((req, res) => {
+		messages.push({ user: req.body.name, text: req.body.text });
+		res.status(200).redirect('/');
 	})
 );
 

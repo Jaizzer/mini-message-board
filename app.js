@@ -1,6 +1,9 @@
 const express = require('express');
 require('dotenv').config();
 
+// Setup async handler for handling errors
+const asyncHandler = require('express-async-handler');
+
 // Setup the server
 const app = express();
 const PORT = process.env.PORT || 4444;

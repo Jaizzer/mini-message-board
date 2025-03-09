@@ -1,10 +1,10 @@
 const express = require('express');
 require('dotenv').config();
 const path = require('node:path');
+const { Router } = require('express');
 
 // Setup async handler for handling errors
 const asyncHandler = require('express-async-handler');
-const newRouter = require('./routes/newRouter');
 
 // Setup the server
 const app = express();
@@ -20,6 +20,12 @@ app.listen(process.env.PORT, (error) => {
 // Setup ejs engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// Create "new" router
+const newRouter = Router();
+
+// Register the "new" router
+app.use('/new', newRouter);
 
 // Message data
 const messages = [
@@ -44,8 +50,13 @@ app.get(
 	})
 );
 
-// Setup 'new' router
-app.use('/new', newRouter);
+// Render Form
+newRouter.get(
+	'/',
+	asyncHandler((req, res) => {
+		res.render('form');
+	})
+);
 
 // Error handler
 app.use((err, req, res, next) => {

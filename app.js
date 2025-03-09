@@ -33,11 +33,13 @@ app.use('/new', newRouter);
 // Message data
 const messages = [
 	{
+		id: 1,
 		text: 'Hi there!',
 		user: 'Armando',
 		added: new Date(),
 	},
 	{
+		id: 2,
 		text: 'Hell World!',
 		user: 'Charles',
 		added: new Date(),
@@ -65,7 +67,7 @@ newRouter.get(
 newRouter.post(
 	'/',
 	asyncHandler((req, res) => {
-		messages.push({ user: req.body.name, text: req.body.text });
+		messages.push({ user: req.body.name, text: req.body.text, message: messages.length, date: new Date() });
 		res.status(200).redirect('/');
 	})
 );
